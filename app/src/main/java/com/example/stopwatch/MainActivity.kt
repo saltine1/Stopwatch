@@ -10,6 +10,12 @@ class MainActivity : AppCompatActivity() {
     companion object{
         // TAG is the default var name for labeling log statements
         val TAG = "MainActivity"
+        val VERBOSE = "oui oui"
+        val DEBUG = ""
+        val INFO = ""
+        val WARN = "ton code est en train de mourir"
+        val ERROR = "ton code est mort"
+        val WTF = "ton code s'est décomposé"
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
