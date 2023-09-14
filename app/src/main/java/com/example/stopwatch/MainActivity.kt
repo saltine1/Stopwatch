@@ -32,7 +32,6 @@ class MainActivity : AppCompatActivity() {
         // calculate the display time if currently running
         if(isRunning) {
             displayTime = SystemClock.elapsedRealtime() - timer.base
-            isRunning = true
         }
         // save key-value pairs to the bundle before the superclass call
         outState.putLong(STATE_DISPLAY_TIME, displayTime)
@@ -52,6 +51,10 @@ class MainActivity : AppCompatActivity() {
             timer.base = SystemClock.elapsedRealtime() - displayTime
             if (savedInstanceState.getBoolean(STATE_IS_RUNNING)){
                 timer.start()
+                startStop.setText("Stop")
+            }
+            else{
+                startStop.setText("Start")
             }
         }
         startStop.setText("Start")
@@ -66,6 +69,7 @@ class MainActivity : AppCompatActivity() {
             }
             else{
                 lastPause = SystemClock.elapsedRealtime()
+                displayTime = SystemClock.elapsedRealtime() - timer.base
                 timer.stop()
                 isRunning = false
                 startStop.setText("Start")
@@ -73,7 +77,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         reset.setOnClickListener {
-            timer.setBase(SystemClock.elapsedRealtime());
+            timer.setBase(SystemClock.elapsedRealtime())
+            timer.stop()
         }
 
     }
